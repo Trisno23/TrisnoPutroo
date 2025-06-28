@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulasi Tes Fisik TNI Komprehensif</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header class="page-header">
+        <div class="page-header-content container">
+            <a href="../index.html" class="back-button">
+                <i class="fas fa-arrow-left"></i> Kembali ke Beranda
+            </a>
+            <h1 class="page-title">Simulasi Tes Fisik TNI</h1>
+        </div>
+    </header>
+
+    <div class="container main-content-area">
+        <section class="intro-section">
+            <p>Isi data hasil latihan Anda di bawah ini untuk memperkirakan kelayakan Anda dalam tes fisik TNI secara keseluruhan. Hasil ini bersifat simulasi dan bukan hasil resmi.</p>
+        </section>
+
+        <section class="section-card form-simulasi fade-in">
+            <h2 class="section-title"><i class="fas fa-edit"></i> Masukkan Hasil Latihan Anda</h2>
+
+            <div class="form-item-group">
+                <div class="input-field">
+                    <label for="jenisKelaminUtama"><i class="fas fa-venus-mars icon-left"></i> Jenis Kelamin:</label>
+                    <select id="jenisKelaminUtama" required>
+                        <option value="">Pilih Jenis Kelamin Anda</option>
+                        <option value="Pria">Pria</option>
+                        <option value="Wanita">Wanita</option>
+                    </select>
+                    <small class="input-hint">Pilihan ini akan menentukan standar penilaian.</small>
+                </div>
+            </div>
+
+            <div class="grid-layout">
+                <div class="form-item-group grid-item">
+                    <h3 class="tes-title"><i class="fas fa-running icon-tes"></i> Lari 12 Menit</h3>
+                    <div class="input-field">
+                        <label for="jarakLari">Jarak Tempuh (meter):</label>
+                        <input type="number" id="jarakLari" placeholder="Contoh: 2400" min="0" required>
+                    </div>
+                </div>
+
+                <div class="form-item-group grid-item">
+                    <h3 class="tes-title"><i class="fas fa-grip-lines icon-tes"></i> Pull Up / Chin Up</h3>
+                    <div class="input-field">
+                        <label for="jumlahPullUp">Jumlah Repetisi:</label>
+                        <input type="number" id="jumlahPullUp" placeholder="Pria: 7 / Wanita: 15" min="0" required>
+                        <small class="input-hint">Pria: Pull Up, Wanita: Chin Up.</small>
+                    </div>
+                </div>
+
+                <div class="form-item-group grid-item">
+                    <h3 class="tes-title"><i class="fas fa-person-sitting icon-tes"></i> Sit Up (1 Menit)</h3>
+                    <div class="input-field">
+                        <label for="jumlahSitUp">Jumlah Repetisi:</label>
+                        <input type="number" id="jumlahSitUp" placeholder="Contoh: 35" min="0" required>
+                    </div>
+                </div>
+
+                <div class="form-item-group grid-item">
+                    <h3 class="tes-title"><i class="fas fa-person-pushup icon-tes"></i> Push Up (1 Menit)</h3>
+                    <div class="input-field">
+                        <label for="jumlahPushUp">Jumlah Repetisi:</label>
+                        <input type="number" id="jumlahPushUp" placeholder="Contoh: 40" min="0" required>
+                    </div>
+                </div>
+
+                <div class="form-item-group grid-item">
+                    <h3 class="tes-title"><i class="fas fa-arrows-turn-right icon-tes"></i> Shuttle Run</h3>
+                    <div class="input-field">
+                        <label for="waktuShuttleRun">Waktu Tempuh (detik):</label>
+                        <input type="number" step="0.1" id="waktuShuttleRun" placeholder="Contoh: 17.2" min="0" required>
+                    </div>
+                </div>
+
+                <div class="form-item-group grid-item">
+                    <h3 class="tes-title"><i class="fas fa-swimmer icon-tes"></i> Renang (50 Meter)</h3>
+                    <div class="input-field">
+                        <label for="waktuRenang">Waktu Tempuh (detik):</label>
+                        <input type="number" step="0.1" id="waktuRenang" placeholder="Contoh: 50.5" min="0" required>
+                    </div>
+                </div>
+            </div> <button type="button" id="hitungNilaiTotal" class="button primary-button large-button">
+                <i class="fas fa-calculator"></i> Hitung Kelayakan Fisik
+            </button>
+        </section>
+
+        <div id="hasilSimulasiTotal" class="section-card result-section hidden fade-in">
+            <h2 class="section-title"><i class="fas fa-chart-bar"></i> Hasil Simulasi Anda</h2>
+            <p id="statusKelayakanTotal" class="result-summary"></p>
+            <h3>Rincian Nilai Per Tes:</h3>
+            <div id="detailNilaiPerTes" class="result-detail-list">
+                </div>
+            <p class="disclaimer-note">
+                <i class="fas fa-info-circle"></i> Catatan: Simulasi ini berdasarkan perkiraan standar umum dan bukan hasil resmi. Standar kelulusan TNI dapat bervariasi.
+            </p>
+        </div>
+    </div>
+
+    <footer class="site-footer">
+        <div class="footer-content">
+            <p>&copy; 2024 Informasi Pendaftaran TNI. Hak Cipta Dilindungi.</p>
+            <div class="footer-links">
+                <a href="#">Kebijakan Privasi</a>
+                <a href="#">Ketentuan Penggunaan</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const jenisKelaminUtamaInput = document.getElementById('jenisKelaminUtama');
+            const jarakLariInput = document.getElementById('jarakLari');
+            const jumlahPullUpInput = document.getElementById('jumlahPullUp');
+            const jumlahSitUpInput = document.getElementById('jumlahSitUp');
+            const jumlahPushUpInput = document.getElementById('jumlahPushUp');
+            const waktuShuttleRunInput = document.getElementById('waktuShuttleRun');
+            const waktuRenangInput = document.getElementById('waktuRenang');
+
+            const hitungNilaiTotalBtn = document.getElementById('hitungNilaiTotal');
+            const hasilSimulasiTotalDiv = document.getElementById('hasilSimulasiTotal');
+            const statusKelayakanTotalP = document.getElementById('statusKelayakanTotal');
+            const detailNilaiPerTesDiv = document.getElementById('detailNilaiPerTes');
+
+            // --- FUNGSI UNTUK MENGHITUNG NILAI SETIAP TES ---
+            // Skala nilai ini adalah CONTOH PERKIRAAN dan dapat bervariasi.
+            // Nilai ini bisa disesuaikan lebih lanjut berdasarkan referensi TNI yang lebih akurat.
+
+            function hitungNilaiLari(jarak, jenisKelamin) {
+                let nilai = 0;
+                if (jenisKelamin === 'Pria') {
+                    if (jarak >= 3200) nilai = 100;
+                    else if (jarak >= 3000) nilai = 90;
+                    else if (jarak >= 2800) nilai = 80;
+                    else if (jarak >= 2600) nilai = 70;
+                    else if (jarak >= 2400) nilai = 60;
+                    else if (jarak >= 2200) nilai = 50; // Batas aman lulus
+                    else if (jarak >= 2000) nilai = 40;
+                    else if (jarak >= 1800) nilai = 30;
+                    else if (jarak >= 1600) nilai = 20;
+                    else nilai = 10;
+                } else { // Wanita
+                    if (jarak >= 2800) nilai = 100;
+                    else if (jarak >= 2600) nilai = 90;
+                    else if (jarak >= 2400) nilai = 80;
+                    else if (jarak >= 2200) nilai = 70;
+                    else if (jarak >= 2000) nilai = 60;
+                    else if (jarak >= 1900) nilai = 50; // Batas aman lulus
+                    else if (jarak >= 1700) nilai = 40;
+                    else if (jarak >= 1500) nilai = 30;
+                    else if (jarak >= 1300) nilai = 20;
+                    else nilai = 10;
+                }
+                return nilai;
+            }
+
+            function hitungNilaiPullUp(jumlah) { // Untuk Pria (Pull Up)
+                let nilai = 0;
+                if (jumlah >= 11) nilai = 100;
+                else if (jumlah === 10) nilai = 90;
+                else if (jumlah === 9) nilai = 80;
+                else if (jumlah === 8) nilai = 70;
+                else if (jumlah === 7) nilai = 60;
+                else if (jumlah === 6) nilai = 50; // Batas aman lulus
+                else if (jumlah === 5) nilai = 40;
+                else if (jumlah === 4) nilai = 30;
+                else if (jumlah === 3) nilai = 20;
+                else nilai = 10;
+                return nilai;
+            }
+            
+            function hitungNilaiChinUp(jumlah) { // Untuk Wanita (Chin Up)
+                let nilai = 0;
+                if (jumlah >= 20) nilai = 100; // Contoh nilai untuk wanita
+                else if (jumlah >= 18) nilai = 90;
+                else if (jumlah >= 16) nilai = 80;
+                else if (jumlah >= 14) nilai = 70;
+                else if (jumlah >= 12) nilai = 60;
+                else if (jumlah >= 10) nilai = 50; // Batas aman lulus
+                else if (jumlah >= 8) nilai = 40;
+                else if (jumlah >= 6) nilai = 30;
+                else if (jumlah >= 4) nilai = 20;
+                else nilai = 10;
+                return nilai;
+            }
+
+
+            function hitungNilaiSitUp(jumlah, jenisKelamin) {
+                let nilai = 0;
+                if (jenisKelamin === 'Pria') {
+                    if (jumlah >= 45) nilai = 100;
+                    else if (jumlah >= 40) nilai = 90;
+                    else if (jumlah >= 35) nilai = 80;
+                    else if (jumlah >= 30) nilai = 70;
+                    else if (jumlah >= 25) nilai = 60;
+                    else if (jumlah >= 20) nilai = 50; // Batas aman lulus
+                    else if (jumlah >= 15) nilai = 40;
+                    else nilai = 20;
+                } else { // Wanita
+                    if (jumlah >= 40) nilai = 100;
+                    else if (jumlah >= 35) nilai = 90;
+                    else if (jumlah >= 30) nilai = 80;
+                    else if (jumlah >= 25) nilai = 70;
+                    else if (jumlah >= 20) nilai = 60;
+                    else if (jumlah >= 18) nilai = 50; // Batas aman lulus
+                    else if (jumlah >= 15) nilai = 40;
+                    else nilai = 20;
+                }
+                return nilai;
+            }
+
+            function hitungNilaiPushUp(jumlah, jenisKelamin) {
+                let nilai = 0;
+                if (jenisKelamin === 'Pria') {
+                    if (jumlah >= 45) nilai = 100;
+                    else if (jumlah >= 40) nilai = 90;
+                    else if (jumlah >= 35) nilai = 80;
+                    else if (jumlah >= 30) nilai = 70;
+                    else if (jumlah >= 25) nilai = 60;
+                    else if (jumlah >= 20) nilai = 50; // Batas aman lulus
+                    else if (jumlah >= 15) nilai = 40;
+                    else nilai = 20;
+                } else { // Wanita
+                    if (jumlah >= 35) nilai = 100;
+                    else if (jumlah >= 30) nilai = 90;
+                    else if (jumlah >= 25) nilai = 80;
+                    else if (jumlah >= 20) nilai = 70;
+                    else if (jumlah >= 15) nilai = 60;
+                    else if (jumlah >= 10) nilai = 50; // Batas aman lulus
+                    else if (jumlah >= 5) nilai = 40;
+                    else nilai = 20;
+                }
+                return nilai;
+            }
+
+            function hitungNilaiShuttleRun(waktu, jenisKelamin) {
+                let nilai = 0;
+                if (jenisKelamin === 'Pria') {
+                    if (waktu <= 16.0) nilai = 100;
+                    else if (waktu <= 16.5) nilai = 90;
+                    else if (waktu <= 17.0) nilai = 80;
+                    else if (waktu <= 17.5) nilai = 70;
+                    else if (waktu <= 18.0) nilai = 60;
+                    else if (waktu <= 18.5) nilai = 50; // Batas aman lulus
+                    else if (waktu <= 19.0) nilai = 40;
+                    else if (waktu <= 19.5) nilai = 30;
+                    else nilai = 20;
+                } else { // Wanita
+                    if (waktu <= 17.0) nilai = 100;
+                    else if (waktu <= 17.5) nilai = 90;
+                    else if (waktu <= 18.0) nilai = 80;
+                    else if (waktu <= 18.5) nilai = 70;
+                    else if (waktu <= 19.0) nilai = 60;
+                    else if (waktu <= 19.5) nilai = 50; // Batas aman lulus
+                    else if (waktu <= 20.0) nilai = 40;
+                    else if (waktu <= 20.5) nilai = 30;
+                    else nilai = 20;
+                }
+                return nilai;
+            }
+
+            function hitungNilaiRenang(waktu, jenisKelamin) {
+                let nilai = 0;
+                if (jenisKelamin === 'Pria') {
+                    if (waktu <= 30.0) nilai = 100;
+                    else if (waktu <= 35.0) nilai = 90;
+                    else if (waktu <= 40.0) nilai = 80;
+                    else if (waktu <= 45.0) nilai = 70;
+                    else if (waktu <= 50.0) nilai = 60;
+                    else if (waktu <= 55.0) nilai = 50; // Batas aman lulus
+                    else if (waktu <= 60.0) nilai = 40;
+                    else if (waktu <= 70.0) nilai = 30;
+                    else nilai = 20;
+                } else { // Wanita
+                    if (waktu <= 35.0) nilai = 100;
+                    else if (waktu <= 40.0) nilai = 90;
+                    else if (waktu <= 45.0) nilai = 80;
+                    else if (waktu <= 50.0) nilai = 70;
+                    else if (waktu <= 55.0) nilai = 60;
+                    else if (waktu <= 60.0) nilai = 50; // Batas aman lulus
+                    else if (waktu <= 65.0) nilai = 40;
+                    else if (waktu <= 75.0) nilai = 30;
+                    else nilai = 20;
+                }
+                return nilai;
+            }
+
+            // --- FUNGSI UTAMA UNTUK MENGHITUNG KELAYAKAN TOTAL ---
+            hitungNilaiTotalBtn.addEventListener('click', function() {
+                // Reset tampilan hasil
+                hasilSimulasiTotalDiv.classList.add('hidden');
+                statusKelayakanTotalP.innerHTML = '';
+                detailNilaiPerTesDiv.innerHTML = '';
+
+                const jenisKelamin = jenisKelaminUtamaInput.value;
+
+                // Validasi input jenis kelamin utama
+                if (!jenisKelamin) {
+                    statusKelayakanTotalP.innerHTML = '<span class="status-fail"><i class="fas fa-exclamation-circle"></i> Mohon pilih jenis kelamin Anda terlebih dahulu.</span>';
+                    hasilSimulasiTotalDiv.classList.remove('hidden');
+                    return;
+                }
+
+                // Ambil nilai dari semua input
+                const jarakLari = parseInt(jarakLariInput.value);
+                const jumlahPullUp = parseInt(jumlahPullUpInput.value); // Ini akan digunakan untuk Pull Up Pria dan Chin Up Wanita
+                const jumlahSitUp = parseInt(jumlahSitUpInput.value);
+                const jumlahPushUp = parseInt(jumlahPushUpInput.value);
+                const waktuShuttleRun = parseFloat(waktuShuttleRunInput.value);
+                const waktuRenang = parseFloat(waktuRenangInput.value);
+
+                // Validasi input dasar untuk semua tes (minimal ada isinya dan valid)
+                if (isNaN(jarakLari) || jarakLari < 0 ||
+                    isNaN(jumlahPullUp) || jumlahPullUp < 0 ||
+                    isNaN(jumlahSitUp) || jumlahSitUp < 0 ||
+                    isNaN(jumlahPushUp) || jumlahPushUp < 0 ||
+                    isNaN(waktuShuttleRun) || waktuShuttleRun <= 0 ||
+                    isNaN(waktuRenang) || waktuRenang <= 0) {
+                    statusKelayakanTotalP.innerHTML = '<span class="status-fail"><i class="fas fa-exclamation-circle"></i> Mohon lengkapi semua kolom tes dengan angka yang valid (minimal 0 untuk repetisi, positif untuk jarak/waktu).</span>';
+                    hasilSimulasiTotalDiv.classList.remove('hidden');
+                    return;
+                }
+                
+                // Array untuk menyimpan hasil nilai setiap tes
+                const hasilTes = [];
+                let lolosSemuaItem = true;
+                const nilaiMinimalLulus = 50; // Asumsi nilai minimal lulus per item
+
+                // Hitung nilai untuk setiap tes
+                const nilaiLari = hitungNilaiLari(jarakLari, jenisKelamin);
+                hasilTes.push({ nama: 'Lari 12 Menit', nilai: nilaiLari, lolos: nilaiLari >= nilaiMinimalLulus });
+
+                // Pull Up (Pria) / Chin Up (Wanita)
+                let nilaiPullChinUp;
+                let namaTesPullChinUp;
+
+                if (jenisKelamin === 'Pria') {
+                    nilaiPullChinUp = hitungNilaiPullUp(jumlahPullUp);
+                    namaTesPullChinUp = 'Pull Up (Pria)';
+                } else { // Wanita
+                    nilaiPullChinUp = hitungNilaiChinUp(jumlahPullUp); // Menggunakan fungsi Chin Up untuk wanita
+                    namaTesPullChinUp = 'Chin Up (Wanita)';
+                }
+                hasilTes.push({ nama: namaTesPullChinUp, nilai: nilaiPullChinUp, lolos: nilaiPullChinUp >= nilaiMinimalLulus });
+                
+                const nilaiSitUp = hitungNilaiSitUp(jumlahSitUp, jenisKelamin);
+                hasilTes.push({ nama: 'Sit Up (1 Menit)', nilai: nilaiSitUp, lolos: nilaiSitUp >= nilaiMinimalLulus });
+
+                const nilaiPushUp = hitungNilaiPushUp(jumlahPushUp, jenisKelamin);
+                hasilTes.push({ nama: 'Push Up (1 Menit)', nilai: nilaiPushUp, lolos: nilaiPushUp >= nilaiMinimalLulus });
+
+                const nilaiShuttleRun = hitungNilaiShuttleRun(waktuShuttleRun, jenisKelamin);
+                hasilTes.push({ nama: 'Shuttle Run', nilai: nilaiShuttleRun, lolos: nilaiShuttleRun >= nilaiMinimalLulus });
+
+                const nilaiRenang = hitungNilaiRenang(waktuRenang, jenisKelamin);
+                hasilTes.push({ nama: 'Renang 50 Meter', nilai: nilaiRenang, lolos: nilaiRenang >= nilaiMinimalLulus });
+
+                // Tentukan status kelayakan keseluruhan dan tampilkan rincian
+                detailNilaiPerTesDiv.innerHTML = ''; // Kosongkan dulu
+                hasilTes.forEach(tes => {
+                    const itemDiv = document.createElement('div');
+                    itemDiv.classList.add('result-item');
+                    let statusHtml = '';
+                    let icon = '';
+
+                    if (tes.lolos) {
+                        statusHtml = `<span class="status-pass">Lulus</span>`;
+                        icon = '<i class="fas fa-check-circle"></i>';
+                    } else {
+                        statusHtml = `<span class="status-fail">Gagal</span>`;
+                        icon = '<i class="fas fa-times-circle"></i>';
+                        lolosSemuaItem = false;
+                    }
+                    
+                    itemDiv.innerHTML = `
+                        <div class="result-item-name">${icon} ${tes.nama}</div>
+                        <div class="result-item-value">${tes.nilai} poin ${statusHtml}</div>
+                    `;
+                    detailNilaiPerTesDiv.appendChild(itemDiv);
+                });
+
+                if (lolosSemuaItem) {
+                    statusKelayakanTotalP.innerHTML = `<span class="status-pass-total"><i class="fas fa-trophy"></i> SELAMAT! Anda Diperkirakan Lulus Tes Fisik TNI secara Keseluruhan. Pertahankan!</span>`;
+                } else {
+                    statusKelayakanTotalP.innerHTML = `<span class="status-fail-total"><i class="fas fa-exclamation-triangle"></i> MOHON MAAF. Anda Diperkirakan Belum Lulus Tes Fisik TNI secara Keseluruhan. Perlu peningkatan pada beberapa item.</span>`;
+                }
+
+                hasilSimulasiTotalDiv.classList.remove('hidden');
+            });
+        });
+    </script>
+</body>
+</html>

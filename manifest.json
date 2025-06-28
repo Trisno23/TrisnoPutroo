@@ -1,0 +1,19 @@
+
+{
+  "name": "Panduan Pendaftaran TNI",
+  "short_name": "TNI Guide",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#2c3e50",
+  "icons": [
+    {
+      "src": "assets/icon.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    
+    }
+      
+  ]
+  
+}

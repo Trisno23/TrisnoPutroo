@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cek Persyaratan Awal & Jalur Pendaftaran</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="manifest" href="../manifest.json" />
+    <link rel="icon" href="../assets/icon.png" type="image/png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+
+    <header class="page-header">
+        <div class="container page-header-content">
+            <a href="../index.html" class="back-button"><i class="fas fa-arrow-left"></i> Kembali ke Beranda</a>
+            <h1 class="page-title">Cek Persyaratan Awal & Jalur Pendaftaran</h1>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="section-card form-section">
+            <p class="section-description">Silakan isi data diri Anda di bawah ini untuk mengecek kelayakan awal dan melihat rekomendasi jalur pendaftaran yang sesuai.</p>
+
+            <form id="cekKelayakanForm" class="grid-form">
+                <div class="form-group">
+                    <label for="tanggalLahir"><i class="far fa-calendar-alt"></i> Tanggal Lahir:</label>
+                    <input type="date" id="tanggalLahir" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="pendidikan"><i class="fas fa-graduation-cap"></i> Pendidikan Terakhir:</label>
+                    <select id="pendidikan" required>
+                        <option value="">Pilih Pendidikan</option>
+                        <option value="SMP">SMP / Sederajat</option>
+                        <option value="SMA">SMA / Sederajat</option>
+                        <option value="D3">D3</option>
+                        <option value="S1">S1 / D4</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="jenisKelamin"><i class="fas fa-user-alt"></i> Jenis Kelamin:</label>
+                    <select id="jenisKelamin" required>
+                        <option value="">Pilih Jenis Kelamin</option>
+                        <option value="Pria">Pria</option>
+                        <option value="Wanita">Wanita</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="tinggi"><i class="fas fa-ruler-vertical"></i> Tinggi (cm):</label>
+                    <input type="number" id="tinggi" placeholder="Contoh: 165" required min="100" max="250">
+                </div>
+
+                <div class="form-group">
+                    <label for="berat"><i class="fas fa-weight-hanging"></i> Berat (kg):</label>
+                    <input type="number" id="berat" placeholder="Contoh: 60" required min="30" max="200">
+                </div>
+
+                <div class="form-group">
+                    <label for="statusPernikahan"><i class="fas fa-ring"></i> Status Pernikahan:</label>
+                    <select id="statusPernikahan" required>
+                        <option value="">Pilih Status</option>
+                        <option value="Belum Menikah">Belum Menikah</option>
+                        <option value="Sudah Menikah">Sudah Menikah</option>
+                    </select>
+                </div>
+
+                <button type="submit" id="cekBtn" class="button primary-button full-width-mobile">
+                    Cek Kelayakan <i class="fas fa-arrow-right"></i>
+                </button>
+            </form>
+
+            <div id="hasilKelayakan" class="info-box hidden"> <h2>Hasil Cek Kelayakan:</h2>
+        <p id="pesanKelayakan"></p> <p id="jalurPendaftaran"></p> </div>
+        </section>
+
+        <section id="peraturanUmumTNI" class="section-card regulations-section">
+            <h2><i class="fas fa-book-open"></i> Peraturan Umum Tes TNI di Indonesia</h2>
+            <p>Berikut adalah beberapa peraturan umum dan persyaratan yang perlu Anda ketahui sebelum mengikuti seleksi:</p>
+            <ul class="regulations-list">
+                <li><i class="fas fa-check-circle"></i> Warga Negara Indonesia.</li>
+                <li><i class="fas fa-check-circle"></i> Beriman dan bertakwa kepada Tuhan Yang Maha Esa.</li>
+                <li><i class="fas fa-check-circle"></i> Setia kepada NKRI yang berdasarkan Pancasila dan UUD 1945.</li>
+                <li><i class="fas fa-check-circle"></i> Berusia minimal 17 tahun 9 bulan dan maksimal 22 tahun pada saat pembukaan pendidikan pertama (untuk Tamtama/Bintara). Untuk Perwira, usia maksimal bisa bervariasi sesuai pendidikan.</li>
+                <li><i class="fas fa-check-circle"></i> Tidak memiliki catatan kriminal yang dikeluarkan secara tertulis oleh Kepolisian.</li>
+                <li><i class="fas fa-check-circle"></i> Sehat jasmani dan rohani serta tidak berkacamata/softlens.</li>
+                <li><i class="fas fa-check-circle"></i> Tidak sedang kehilangan hak menjadi prajurit berdasarkan putusan pengadilan yang telah berkekuatan hukum tetap.</li>
+                <li><i class="fas fa-check-circle"></i> Tidak bertato/bekas tato dan tidak ditindik/bekas tindik kecuali disebabkan oleh ketentuan adat.</li>
+                <li><i class="fas fa-check-circle"></i> Belum pernah menikah dan sanggup tidak menikah selama pendidikan pertama. (Beberapa jalur khusus dan Perwira dapat memiliki pengecualian).</li>
+                <li><i class="fas fa-check-circle"></i> Bersedia menjalani Ikatan Dinas Pertama (IDP) sesuai ketentuan.</li>
+                <li><i class="fas fa-check-circle"></i> Memiliki surat persetujuan orang tua/wali.</li>
+                <li><i class="fas fa-check-circle"></i> Bersedia ditempatkan di seluruh wilayah NKRI.</li>
+                <li><i class="fas fa-check-circle"></i> Lulus pemeriksaan dan pengujian psikologi, akademik, kesehatan, jasmani (lari, pull up, sit up, push up, shuttle run, renang), dan postur.</li>
+            </ul>
+            <p class="official-site-note">Ini adalah ringkasan. Untuk detail lengkap dan peraturan terbaru, selalu merujuk pada pengumuman resmi dari <a href="https://rekrutmen-tni.mil.id/" target="_blank"><i class="fas fa-external-link-alt"></i> situs rekrutmen TNI</a>.</p>
+        </section>
+    </main>
+
+    <script src="../js/cekSyarat.js"></script>
+</body>
+</html>

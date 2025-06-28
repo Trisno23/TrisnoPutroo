@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tentang Aplikasi Ini</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <style>
+    /* Tambahan CSS khusus untuk halaman Tentang (bisa dipindahkan ke style.css jika diinginkan) */
+    .about-section h3 {
+        color: var(--primary-color);
+        margin-top: 25px;
+        margin-bottom: 15px;
+        font-size: 1.3em;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+    .about-section h3 i {
+        color: var(--secondary-color);
+        font-size: 1.1em;
+    }
+    .about-section p {
+        color: var(--text-color);
+        line-height: 1.7;
+        margin-bottom: 15px;
+    }
+    .motivation-quote {
+        background-color: var(--card-bg-color); /* Menggunakan warna background card */
+        border-left: 5px solid var(--accent-color);
+        padding: 20px;
+        margin-top: 20px;
+        border-radius: 8px;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    }
+    .motivation-quote p {
+        font-style: italic;
+        color: var(--text-color);
+        margin-bottom: 10px;
+        font-size: 1.05em;
+    }
+    .motivation-quote .author {
+        text-align: right;
+        font-weight: bold;
+        color: var(--primary-color);
+        margin-top: 15px;
+        display: block;
+    }
+    /* Gaya untuk bagian kontak */
+    .contact-info {
+        margin-top: 25px;
+        background-color: var(--secondary-card-bg-color, #f9f9f9); /* Lighter background for contact info */
+        padding: 15px;
+        border-radius: 8px;
+        border: 1px solid var(--border-color);
+    }
+    .contact-info h4 {
+        color: var(--primary-color);
+        margin-bottom: 10px;
+        font-size: 1.1em;
+    }
+    .contact-info ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+    .contact-info ul li {
+        margin-bottom: 8px;
+        color: var(--text-color);
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+    .contact-info ul li i {
+        color: var(--accent-color);
+        font-size: 1.2em;
+    }
+    .contact-info ul li a {
+        color: var(--link-color);
+        text-decoration: none;
+        font-weight: bold;
+    }
+    .contact-info ul li a:hover {
+        text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="page-header">
+    <div class="page-header-content">
+      <a href="../index.html" class="back-button"><i class="fas fa-arrow-left"></i> Kembali</a>
+      <h1 class="page-title">Tentang Aplikasi Ini</h1>
+    </div>
+  </div>
+
+  <div class="container">
+    <section class="section-card about-section">
+      <h2 style="text-align: center; margin-bottom: 25px;"><i class="fas fa-info-circle section-icon"></i> Informasi Aplikasi</h2>
+
+      <h3><i class="fas fa-file-alt"></i> Sekilas Tentang Aplikasi</h3>
+      <p>Aplikasi ini adalah sebuah <strong>Panduan Pra-Pendaftaran</strong> yang dibuat secara independen dan tidak berafiliasi resmi dengan Tentara Nasional Indonesia (TNI).</p>
+      <p>Tujuan utama dari aplikasi ini adalah untuk membantu calon pendaftar TNI mendapatkan pemahaman awal mengenai persyaratan umum, tahapan seleksi, tips persiapan, dan informasi penting lainnya yang relevan sebelum mereka melakukan pendaftaran resmi di jalur yang disediakan oleh TNI.</p>
+      <p>Meskipun kami berusaha menyajikan informasi yang akurat dan terkini, penting untuk selalu memverifikasi semua detail melalui sumber resmi.</p>
+
+      <h3><i class="fas fa-link"></i> Website Resmi Rekrutmen TNI</h3>
+      <p>Untuk informasi yang paling akurat, terbaru, dan resmi terkait pendaftaran TNI (Tamtama, Bintara, Perwira), silakan kunjungi situs web resmi:</p>
+      <div style="text-align: center; margin-top: 20px;">
+        <a href="https://rekrutmen-tni.mil.id" target="_blank" class="button">
+          <i class="fas fa-external-link-alt"></i> Kunjungi Situs Resmi Rekrutmen TNI
+        </a>
+      </div>
+
+      <h3><i class="fas fa-user-circle"></i> Tentang Pencipta Aplikasi</h3>
+      <p>Aplikasi PWA (Progressive Web App) panduan pra-pendaftaran ini diciptakan dan dikembangkan dengan penuh dedikasi oleh:</p>
+      <p style="font-weight: bold; font-size: 1.1em; color: var(--accent-color);">Trisno Putro (1%)</p>
+      <p>Dengan visi untuk memberikan kemudahan akses informasi bagi para pemuda/i Indonesia yang bercita-cita mengabdi kepada negara melalui TNI, Trisno Putro merancang aplikasi ini sebagai jembatan awal bagi calon prajurit.</p>
+
+      <div class="contact-info">
+        <h4>Hubungi Pencipta Aplikasi:</h4>
+        <ul>
+          <li><i class="fab fa-whatsapp"></i> WhatsApp: <a href="https://wa.me/6281239428002" target="_blank">0812-3942-8002</a> </li>
+          <li><i class="fab fa-instagram"></i> Instagram: <a href="https://instagram.com/trisno1234yihh" target="_blank">trisno1234yihh</a> </li>
+        </ul>
+      </div>
+
+      <h3><i class="fas fa-lightbulb"></i> Kata-kata Motivasi Sigma 1%</h3>
+      <div class="motivation-quote">
+        <p>"<strong>Sigma 1% - Mengukir Jejak, Mengejar Impian</strong></p>
+        <p>Saya Trisno Putro, bagian dari 1% yang percaya bahwa setiap langkah kecil adalah pondasi untuk lompatan besar. Dalam setiap tantangan, ada kesempatan untuk membuktikan ketahanan dan tekad. Jangan pernah berhenti mengejar impianmu, karena setiap tetes keringat adalah investasi untuk masa depan yang gemilang. Jadilah pribadi yang berkomitmen, berintegritas, dan tak kenal menyerah. Dunia menanti kontribusimu. Bangkit, berjuang, dan raih kemenangan!"</p>
+        <span class="author">- Trisno Putro</span>
+      </div>
+
+    </section>
+  </div> </body>
+</html>
